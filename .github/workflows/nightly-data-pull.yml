@@ -1,0 +1,26 @@
+# .github/workflows/scheduled-builds.yml
+name: Pull 1 days worth of CalDav data from 15 days ago
+
+on:
+  schedule:
+    # Run every midnight
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+env:
+  FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+  FIREBASE_PRIVATE_KEY_ID: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
+
+jobs:
+  install-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v1
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+
+      - name: npm Run Collect Data
+        run: npm run collect-data
