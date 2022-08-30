@@ -5,6 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "collect-data": "node ./scripts/index",
+    "export-data": "node ./scripts/exportCalDavToFile",
     "lint": "vue-cli-service lint"
   },
   "engines": {
