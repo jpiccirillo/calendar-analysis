@@ -7,6 +7,7 @@ const { getEvents } = require('./caldav')
 const { insertEvents } = require('./firebase')
 
 function callback(results) {
+  console.log('Results to insert:', JSON.stringify(results))
   if (Object.keys(results).length) insertEvents(results)
 }
 
