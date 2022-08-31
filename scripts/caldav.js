@@ -17,13 +17,16 @@ function formatDateForCaldav(d8) {
 }
 
 module.exports.getEvents = (start, end, callback) => {
+  let startDate = formatDateForCaldav(start)
+  let endDate = formatDateForCaldav(end)
+  console.log('CALDAV BOUNDARIES:', { startDate, endDate })
   ICLOUD_CAL_IDS.forEach(({ name, id }) => {
     getEvents(
       `${ICLOUD_URL}/${id}/`,
       ICLOUD_USERNAME,
       ICLOUD_PASSWORD,
-      formatDateForCaldav(start),
-      formatDateForCaldav(end),
+      startDate,
+      endDate,
       (results) => callback(results, name),
     )
   })
